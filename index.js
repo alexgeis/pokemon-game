@@ -40,20 +40,33 @@ image.src = "./game_assets/pokemonGameMap400.png";
 const foregroundImage = new Image();
 foregroundImage.src = "./game_assets/pokemonGameMapFOREGROUND.png";
 
-const playerImage = new Image();
-playerImage.src = "./game_assets/playerDown.png";
+const playerDownImage = new Image();
+playerDownImage.src = "./game_assets/playerDown.png";
+const playerUpImage = new Image();
+playerUpImage.src = "./game_assets/playerUp.png";
+const playerLeftImage = new Image();
+playerLeftImage.src = "./game_assets/playerLeft.png";
+const playerRightImage = new Image();
+playerRightImage.src = "./game_assets/playerRight.png";
+
 const playerWidth = 192;
 const playerHeight = 68;
-const mvmtDistance = playerImage.height / 4 / 2;
+const mvmtDistance = playerDownImage.height / 4 / 2;
 
 const player = new Sprite({
 	position: {
 		x: canvas.width / 2 - playerWidth / 4 / 2,
 		y: canvas.height / 2 - playerHeight / 2,
 	},
-	image: playerImage,
+	image: playerDownImage,
 	frames: {
 		max: 4,
+	},
+	sprites: {
+		up: playerUpImage,
+		down: playerDownImage,
+		left: playerLeftImage,
+		right: playerRightImage,
 	},
 });
 
@@ -88,7 +101,7 @@ const keys = {
 	},
 };
 
-const movables = [background, ...boundaries];
+const movables = [background, foreground, ...boundaries];
 
 function shapeCollision({ shape1, shape2 }) {
 	return (
@@ -109,7 +122,9 @@ function animate() {
 	foreground.draw();
 
 	let moving = true;
+	player.moving = false;
 	if (keys.down.pressed && lastKey === "down") {
+		player.moving = true;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
 			if (
@@ -119,7 +134,7 @@ function animate() {
 						...boundary,
 						position: {
 							x: boundary.position.x,
-							y: boundary.position.y - playerImage.height / 2,
+							y: boundary.position.y - playerDownImage.height / 2,
 						},
 					},
 				})
@@ -131,11 +146,12 @@ function animate() {
 		}
 		if (moving) {
 			movables.forEach((movable) => {
-				movable.position.y -= playerImage.height / 4 / 2;
+				movable.position.y -= playerDownImage.height / 4 / 2;
 			});
 		}
-		// background.position.y -= playerImage.height / 4 / 2;
+		// background.position.y -= playerDownImage.height / 4 / 2;
 	} else if (keys.up.pressed && lastKey === "up") {
+		player.moving = true;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
 			if (
@@ -145,7 +161,7 @@ function animate() {
 						...boundary,
 						position: {
 							x: boundary.position.x,
-							y: boundary.position.y + playerImage.height / 4 / 2,
+							y: boundary.position.y + playerDownImage.height / 4 / 2,
 						},
 					},
 				})
@@ -158,10 +174,11 @@ function animate() {
 
 		if (moving) {
 			movables.forEach((movable) => {
-				movable.position.y += playerImage.height / 4 / 2;
+				movable.position.y += playerDownImage.height / 4 / 2;
 			});
 		}
 	} else if (keys.left.pressed && lastKey === "left") {
+		player.moving = true;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
 			if (
@@ -170,7 +187,7 @@ function animate() {
 					shape2: {
 						...boundary,
 						position: {
-							x: boundary.position.x + playerImage.height / 4 / 2,
+							x: boundary.position.x + playerDownImage.height / 4 / 2,
 							y: boundary.position.y,
 						},
 					},
@@ -184,10 +201,11 @@ function animate() {
 
 		if (moving) {
 			movables.forEach((movable) => {
-				movable.position.x += playerImage.height / 4 / 2;
+				movable.position.x += playerDownImage.height / 4 / 2;
 			});
 		}
 	} else if (keys.right.pressed && lastKey === "right") {
+		player.moving = true;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
 			if (
@@ -196,7 +214,7 @@ function animate() {
 					shape2: {
 						...boundary,
 						position: {
-							x: boundary.position.x - playerImage.height / 4 / 2,
+							x: boundary.position.x - playerDownImage.height / 4 / 2,
 							y: boundary.position.y,
 						},
 					},
@@ -210,7 +228,7 @@ function animate() {
 
 		if (moving) {
 			movables.forEach((movable) => {
-				movable.position.x -= playerImage.height / 4 / 2;
+				movable.position.x -= playerDownImage.height / 4 / 2;
 			});
 		}
 	}
