@@ -35,3 +35,15 @@ image.onload = () => {
 		playerImage.height
 	);
 };
+
+window.addEventListener("keydown", (e) => {
+	if (e.key === "s" || e.key === "ArrowDown") {
+		log("press down key");
+	} else if (e.key === "d" || e.key === "ArrowRight") {
+		log("press right key");
+	} else if (e.key === "a" || e.key === "ArrowLeft") {
+		log("press left key");
+	} else if (e.key === "w" || e.key === "ArrowUp") {
+		log("press up key");
+	}
+});
