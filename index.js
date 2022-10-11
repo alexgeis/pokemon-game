@@ -17,9 +17,44 @@ image.src = "./game_assets/pokemonGameMap400.png";
 const playerImage = new Image();
 playerImage.src = "./game_assets/playerDown.png";
 
-// draw map and assets once main map loads
-image.onload = () => {
-	c.drawImage(image, -256, -698);
+class Sprite {
+	constructor({ position, velocity, image }) {
+		this.position = position;
+		this.image = image;
+	}
+
+	draw() {
+		c.drawImage(this.image, this.position.x, this.position.y);
+	}
+}
+
+const background = new Sprite({
+	position: {
+		x: -1408,
+		y: -1130,
+	},
+	image: image,
+});
+
+const keys = {
+	up: {
+		pressed: false,
+	},
+	down: {
+		pressed: false,
+	},
+	left: {
+		pressed: false,
+	},
+	right: {
+		pressed: false,
+	},
+};
+
+function animate() {
+	window.requestAnimationFrame(animate);
+	// c.drawImage(image, -256, -698);
+	background.draw();
 	c.drawImage(
 		playerImage,
 		// image crop arguments
@@ -34,16 +69,34 @@ image.onload = () => {
 		playerImage.width / 4,
 		playerImage.height
 	);
-};
+
+	if (keys.down.pressed) background.position.y -= playerImage.height;
+	else if (keys.up.pressed) background.position.y += playerImage.height;
+	else if (keys.left.pressed) background.position.x += playerImage.height;
+	else if (keys.right.pressed) background.position.x -= playerImage.height;
+}
+animate();
 
 window.addEventListener("keydown", (e) => {
 	if (e.key === "s" || e.key === "ArrowDown") {
-		log("press down key");
+		keys.down.pressed = true;
 	} else if (e.key === "d" || e.key === "ArrowRight") {
-		log("press right key");
+		keys.right.pressed = true;
 	} else if (e.key === "a" || e.key === "ArrowLeft") {
-		log("press left key");
+		keys.left.pressed = true;
 	} else if (e.key === "w" || e.key === "ArrowUp") {
-		log("press up key");
+		keys.up.pressed = true;
+	}
+});
+
+window.addEventListener("keyup", (e) => {
+	if (e.key === "s" || e.key === "ArrowDown") {
+		keys.down.pressed = false;
+	} else if (e.key === "d" || e.key === "ArrowRight") {
+		keys.right.pressed = false;
+	} else if (e.key === "a" || e.key === "ArrowLeft") {
+		keys.left.pressed = false;
+	} else if (e.key === "w" || e.key === "ArrowUp") {
+		keys.up.pressed = false;
 	}
 });
