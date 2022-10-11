@@ -28,7 +28,12 @@ class Boundary {
 		c.fillRect(this.position.x, this.position.y, this.width, this.height);
 	}
 }
+
 const boundaries = [];
+const offset = {
+	x: -1408,
+	y: -1130,
+};
 
 collisionsMap.forEach((row, i) => {
 	row.forEach((value, j) => {
@@ -36,8 +41,8 @@ collisionsMap.forEach((row, i) => {
 			boundaries.push(
 				new Boundary({
 					position: {
-						x: j * Boundary.width,
-						y: i * Boundary.height,
+						x: j * Boundary.width + offset.x,
+						y: i * Boundary.height + offset.y,
 					},
 				})
 			);
@@ -62,11 +67,6 @@ class Sprite {
 	}
 }
 
-const offset = {
-	x: -1408,
-	y: -1130,
-};
-
 const background = new Sprite({
 	position: {
 		x: offset.x,
@@ -90,10 +90,19 @@ const keys = {
 	},
 };
 
+const testBoundary = new Boundary({
+	position: {
+		x: 400,
+		y: 400,
+	},
+});
+
+const movables = [background, testBoundary];
 function animate() {
 	window.requestAnimationFrame(animate);
 	background.draw();
-	boundaries.forEach((boundary) => boundary.draw());
+	// boundaries.forEach((boundary) => boundary.draw());
+	testBoundary.draw();
 	c.drawImage(
 		playerImage,
 		// image crop arguments
@@ -110,13 +119,22 @@ function animate() {
 	);
 
 	if (keys.down.pressed && lastKey === "down") {
-		background.position.y -= playerImage.height / 4 / 2;
+		movables.forEach((movable) => {
+			movable.position.y -= playerImage.height / 4 / 2;
+		});
+		// background.position.y -= playerImage.height / 4 / 2;
 	} else if (keys.up.pressed && lastKey === "up") {
-		background.position.y += playerImage.height / 4 / 2;
+		movables.forEach((movable) => {
+			movable.position.y += playerImage.height / 4 / 2;
+		});
 	} else if (keys.left.pressed && lastKey === "left") {
-		background.position.x += playerImage.height / 4;
+		movables.forEach((movable) => {
+			movable.position.x += playerImage.height / 4 / 2;
+		});
 	} else if (keys.right.pressed && lastKey === "right") {
-		background.position.x -= playerImage.height / 4;
+		movables.forEach((movable) => {
+			movable.position.x -= playerImage.height / 4 / 2;
+		});
 	}
 }
 animate();
