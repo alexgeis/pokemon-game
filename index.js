@@ -57,6 +57,7 @@ const playerImage = new Image();
 playerImage.src = "./game_assets/playerDown.png";
 const playerWidth = 192;
 const playerHeight = 68;
+const mvmtDistance = playerImage.height / 4 / 2;
 
 class Sprite {
 	constructor({ position, velocity, image, frames = { max: 1 } }) {
@@ -125,47 +126,130 @@ const keys = {
 	},
 };
 
-const testBoundary = new Boundary({
-	position: {
-		x: 400,
-		y: 400,
-	},
-});
+const movables = [background, ...boundaries];
 
-const movables = [background, testBoundary];
+function shapeCollision({ shape1, shape2 }) {
+	return (
+		shape1.position.x + shape1.width >= shape2.position.x &&
+		shape1.position.x <= shape2.position.x + shape2.width &&
+		shape1.position.y + shape1.height * 0.7 >= shape2.position.y &&
+		shape1.position.y <= shape2.position.y + shape2.height * 0.2
+	);
+}
+
 function animate() {
 	window.requestAnimationFrame(animate);
 	background.draw();
-	// boundaries.forEach((boundary) => boundary.draw());
-	testBoundary.draw();
+	boundaries.forEach((boundary) => {
+		boundary.draw();
+	});
 	player.draw();
 
-	if (
-		player.position.x + player.width >= testBoundary.position.x &&
-		player.position.x <= testBoundary.position.x + player.width &&
-		player.position.y + player.height >= testBoundary.position.y &&
-		player.position.y <= testBoundary.position.y + player.height
-	) {
-		log("COLLIDE");
-	}
-
+	let moving = true;
 	if (keys.down.pressed && lastKey === "down") {
-		movables.forEach((movable) => {
-			movable.position.y -= playerImage.height / 4 / 2;
-		});
+		for (let i = 0; i < boundaries.length; i++) {
+			const boundary = boundaries[i];
+			if (
+				shapeCollision({
+					shape1: player,
+					shape2: {
+						...boundary,
+						position: {
+							x: boundary.position.x,
+							y: boundary.position.y - playerImage.height / 4 / 2,
+						},
+					},
+				})
+			) {
+				log("COLLIDE");
+				moving = false;
+				break;
+			}
+		}
+		if (moving) {
+			movables.forEach((movable) => {
+				movable.position.y -= playerImage.height / 4 / 2;
+			});
+		}
 		// background.position.y -= playerImage.height / 4 / 2;
 	} else if (keys.up.pressed && lastKey === "up") {
-		movables.forEach((movable) => {
-			movable.position.y += playerImage.height / 4 / 2;
-		});
+		for (let i = 0; i < boundaries.length; i++) {
+			const boundary = boundaries[i];
+			if (
+				shapeCollision({
+					shape1: player,
+					shape2: {
+						...boundary,
+						position: {
+							x: boundary.position.x,
+							y: boundary.position.y + playerImage.height / 4 / 2,
+						},
+					},
+				})
+			) {
+				log("COLLIDE");
+				moving = false;
+				break;
+			}
+		}
+
+		if (moving) {
+			movables.forEach((movable) => {
+				movable.position.y += playerImage.height / 4 / 2;
+			});
+		}
 	} else if (keys.left.pressed && lastKey === "left") {
-		movables.forEach((movable) => {
-			movable.position.x += playerImage.height / 4 / 2;
-		});
+		for (let i = 0; i < boundaries.length; i++) {
+			const boundary = boundaries[i];
+			if (
+				shapeCollision({
+					shape1: player,
+					shape2: {
+						...boundary,
+						position: {
+							x: boundary.position.x + playerImage.height / 4 / 2,
+							y: boundary.position.y,
+						},
+					},
+				})
+			) {
+				log("COLLIDE");
+				moving = false;
+				break;
+			}
+		}
+
+		if (moving) {
+			movables.forEach((movable) => {
+				movable.position.x += playerImage.height / 4 / 2;
+			});
+		}
 	} else if (keys.right.pressed && lastKey === "right") {
-		movables.forEach((movable) => {
-			movable.position.x -= playerImage.height / 4 / 2;
-		});
+		for (let i = 0; i < boundaries.length; i++) {
+			const boundary = boundaries[i];
+			if (
+				shapeCollision({
+					shape1: player,
+					shape2: {
+						...boundary,
+						position: {
+							x: boundary.position.x - playerImage.height / 4 / 2,
+							y: boundary.position.y,
+						},
+					},
+				})
+			) {
+				log("COLLIDE");
+				moving = false;
+				break;
+			}
+		}
+
+		if (moving) {
+			movables.forEach((movable) => {
+				movable.position.x -= playerImage.height / 4 / 2;
+			});
+		}
 	}
 }
 animate();
