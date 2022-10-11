@@ -11,7 +11,7 @@ const image = new Image(""); // creates HTML img element
 image.src = "./game_assets/pokemonGameMap400.png";
 
 image.onload = () => {
-	c.drawImage(image, 0, 0); // draw image once it loads
+	c.drawImage(image, -300, -750); // draw image once it loads
 };
 
 log(c);
