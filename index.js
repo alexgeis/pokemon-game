@@ -35,19 +35,19 @@ collisionsMap.forEach((row, i) => {
 });
 
 const image = new Image(); // creates HTML img element
-image.src = "./game_assets/pokemonGameMap400.png";
+image.src = "./img/game_assets/pokemonGameMap400.png";
 
 const foregroundImage = new Image();
-foregroundImage.src = "./game_assets/pokemonGameMapFOREGROUND.png";
+foregroundImage.src = "./img/game_assets/pokemonGameMapFOREGROUND.png";
 
 const playerDownImage = new Image();
-playerDownImage.src = "./game_assets/playerDown.png";
+playerDownImage.src = "./img/game_assets/playerDown.png";
 const playerUpImage = new Image();
-playerUpImage.src = "./game_assets/playerUp.png";
+playerUpImage.src = "./img/game_assets/playerUp.png";
 const playerLeftImage = new Image();
-playerLeftImage.src = "./game_assets/playerLeft.png";
+playerLeftImage.src = "./img/game_assets/playerLeft.png";
 const playerRightImage = new Image();
-playerRightImage.src = "./game_assets/playerRight.png";
+playerRightImage.src = "./img/game_assets/playerRight.png";
 
 const playerWidth = 192;
 const playerHeight = 68;
