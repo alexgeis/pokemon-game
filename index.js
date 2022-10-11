@@ -55,6 +55,8 @@ image.src = "./game_assets/pokemonGameMap400.png";
 
 const playerImage = new Image();
 playerImage.src = "./game_assets/playerDown.png";
+const playerWidth = 192;
+const playerHeight = 68;
 
 class Sprite {
 	constructor({ position, velocity, image, frames = { max: 1 } }) {
@@ -83,6 +85,17 @@ class Sprite {
 // // onscreen position coordinates
 // canvas.width / 2 - this.image.width / 4 / 2,
 // canvas.height / 2 - this.image.height / 2,
+
+const player = new Sprite({
+	position: {
+		x: canvas.width / 2 - playerWidth / 4 / 2,
+		y: canvas.height / 2 - playerHeight / 2,
+	},
+	image: playerImage,
+	frames: {
+		max: 4,
+	},
+});
 
 const background = new Sprite({
 	position: {
@@ -120,6 +133,7 @@ function animate() {
 	background.draw();
 	// boundaries.forEach((boundary) => boundary.draw());
 	testBoundary.draw();
+	player.draw();
 
 	if (keys.down.pressed && lastKey === "down") {
 		movables.forEach((movable) => {
