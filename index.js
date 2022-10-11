@@ -24,7 +24,7 @@ class Boundary {
 	}
 
 	draw() {
-		c.fillStyle = "red";
+		c.fillStyle = "rgba(255,0,0, 0.2)";
 		c.fillRect(this.position.x, this.position.y, this.width, this.height);
 	}
 }
@@ -156,7 +156,7 @@ function animate() {
 						...boundary,
 						position: {
 							x: boundary.position.x,
-							y: boundary.position.y - playerImage.height / 4 / 2,
+							y: boundary.position.y - playerImage.height / 2,
 						},
 					},
 				})
