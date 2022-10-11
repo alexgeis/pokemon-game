@@ -57,15 +57,32 @@ const playerImage = new Image();
 playerImage.src = "./game_assets/playerDown.png";
 
 class Sprite {
-	constructor({ position, velocity, image }) {
+	constructor({ position, velocity, image, frames = { max: 1 } }) {
 		this.position = position;
 		this.image = image;
+		this.frames = frames;
 	}
 
 	draw() {
-		c.drawImage(this.image, this.position.x, this.position.y);
+		// c.drawImage(this.image, this.position.x, this.position.y);
+		c.drawImage(
+			this.image,
+			// image crop arguments
+			0,
+			0,
+			this.image.width / this.frames.max,
+			this.image.height,
+			this.position.x,
+			this.position.y,
+			// onscreen render area
+			this.image.width / this.frames.max,
+			this.image.height
+		);
 	}
 }
+// // onscreen position coordinates
+// canvas.width / 2 - this.image.width / 4 / 2,
+// canvas.height / 2 - this.image.height / 2,
 
 const background = new Sprite({
 	position: {
@@ -103,20 +120,6 @@ function animate() {
 	background.draw();
 	// boundaries.forEach((boundary) => boundary.draw());
 	testBoundary.draw();
-	c.drawImage(
-		playerImage,
-		// image crop arguments
-		0,
-		0,
-		playerImage.width / 4,
-		playerImage.height,
-		// onscreen position coordinates
-		canvas.width / 2 - playerImage.width / 4 / 2,
-		canvas.height / 2 - playerImage.height / 2,
-		// onscreen render area
-		playerImage.width / 4,
-		playerImage.height
-	);
 
 	if (keys.down.pressed && lastKey === "down") {
 		movables.forEach((movable) => {
