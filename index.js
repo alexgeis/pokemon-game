@@ -69,7 +69,7 @@ const player = new Sprite({
 		right: playerRightImage,
 	},
 });
-
+log(player);
 const background = new Sprite({
 	position: {
 		x: offset.x,
@@ -125,6 +125,7 @@ function animate() {
 	player.moving = false;
 	if (keys.down.pressed && lastKey === "down") {
 		player.moving = true;
+		player.image = player.sprites.down;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
 			if (
@@ -152,6 +153,7 @@ function animate() {
 		// background.position.y -= playerDownImage.height / 4 / 2;
 	} else if (keys.up.pressed && lastKey === "up") {
 		player.moving = true;
+		player.image = player.sprites.up;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
 			if (
@@ -179,6 +181,7 @@ function animate() {
 		}
 	} else if (keys.left.pressed && lastKey === "left") {
 		player.moving = true;
+		player.image = player.sprites.left;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
 			if (
@@ -206,6 +209,7 @@ function animate() {
 		}
 	} else if (keys.right.pressed && lastKey === "right") {
 		player.moving = true;
+		player.image = player.sprites.right;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
 			if (
