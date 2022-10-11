@@ -22,7 +22,16 @@ image.onload = () => {
 	c.drawImage(image, -256, -698);
 	c.drawImage(
 		playerImage,
-		canvas.width / 2 - playerImage.width / 2,
-		canvas.height / 2 - playerImage.height / 2
+		// image crop arguments
+		0,
+		0,
+		playerImage.width / 4,
+		playerImage.height,
+		// onscreen position coordinates
+		canvas.width / 2 - playerImage.width / 4 / 2,
+		canvas.height / 2 - playerImage.height / 2,
+		// onscreen render area
+		playerImage.width / 4,
+		playerImage.height
 	);
 };
