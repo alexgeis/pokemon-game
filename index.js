@@ -53,7 +53,6 @@ const keys = {
 
 function animate() {
 	window.requestAnimationFrame(animate);
-	// c.drawImage(image, -256, -698);
 	background.draw();
 	c.drawImage(
 		playerImage,
@@ -70,22 +69,32 @@ function animate() {
 		playerImage.height
 	);
 
-	if (keys.down.pressed) background.position.y -= playerImage.height;
-	else if (keys.up.pressed) background.position.y += playerImage.height;
-	else if (keys.left.pressed) background.position.x += playerImage.height;
-	else if (keys.right.pressed) background.position.x -= playerImage.height;
+	if (keys.down.pressed && lastKey === "down") {
+		background.position.y -= playerImage.height / 4 / 2;
+	} else if (keys.up.pressed && lastKey === "up") {
+		background.position.y += playerImage.height / 4 / 2;
+	} else if (keys.left.pressed && lastKey === "left") {
+		background.position.x += playerImage.height / 4;
+	} else if (keys.right.pressed && lastKey === "right") {
+		background.position.x -= playerImage.height / 4;
+	}
 }
 animate();
 
+let lastKey = "";
 window.addEventListener("keydown", (e) => {
 	if (e.key === "s" || e.key === "ArrowDown") {
 		keys.down.pressed = true;
+		lastKey = "down";
 	} else if (e.key === "d" || e.key === "ArrowRight") {
 		keys.right.pressed = true;
+		lastKey = "right";
 	} else if (e.key === "a" || e.key === "ArrowLeft") {
 		keys.left.pressed = true;
+		lastKey = "left";
 	} else if (e.key === "w" || e.key === "ArrowUp") {
 		keys.up.pressed = true;
+		lastKey = "up";
 	}
 });
 
