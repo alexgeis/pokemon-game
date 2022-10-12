@@ -382,13 +382,12 @@ function animateBattle() {
 animateBattle();
 
 document.querySelectorAll(".attack").forEach((button) => {
-	button.addEventListener("click", () => {
+	button.addEventListener("click", (e) => {
+		log(e.currentTarget.textContent);
+		const targetAttack = e.currentTarget.textContent;
+
 		emby.attack({
-			attack: {
-				name: "Tackle",
-				damage: 10,
-				type: "Normal",
-			},
+			attack: attacks[targetAttack],
 			recipient: draggle,
 		});
 	});

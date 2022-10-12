@@ -55,48 +55,57 @@ class Sprite {
 	}
 
 	attack({ attack, recipient }) {
-		const tl = gsap.timeline();
+		switch (attack.name) {
+			case "Tackle":
+				const tl = gsap.timeline();
 
-		this.health -= attack.damage;
+				this.health -= attack.damage;
 
-		let movementDistance = 10;
-		if (this.isEnemy) movementDistance = -10;
+				let movementDistance = 10;
+				if (this.isEnemy) movementDistance = -10;
 
-		let healthBar = "#currHealthEnemy";
-		if (this.isEnemy) healthBar = "#currHealthPlayer";
+				let healthBar = "#currHealthEnemy";
+				if (this.isEnemy) healthBar = "#currHealthPlayer";
 
-		tl.to(this.position, {
-			x: this.position.x - movementDistance * 2,
-		})
-			.to(this.position, {
-				x: this.position.x + movementDistance * 4,
-				y: this.position.y - movementDistance,
-				duration: 0.1,
-				onComplete: () => {
-					// enemy gets hit
-					gsap.to(healthBar, {
-						width: this.health + "%",
+				tl.to(this.position, {
+					x: this.position.x - movementDistance * 2,
+				})
+					.to(this.position, {
+						x: this.position.x + movementDistance * 4,
+						y: this.position.y - movementDistance,
+						duration: 0.1,
+						onComplete: () => {
+							// enemy gets hit
+							gsap.to(healthBar, {
+								width: this.health + "%",
+							});
+
+							gsap.to(recipient.position, {
+								x: recipient.position.x + 10,
+								yoyo: true,
+								repeat: 5,
+								duration: 0.08,
+							});
+
+							gsap.to(recipient, {
+								opacity: 0,
+								repeat: 5,
+								yoyo: true,
+								duration: 0.08,
+							});
+						},
+					})
+					.to(this.position, {
+						x: this.position.x,
+						y: this.position.y,
 					});
 
-					gsap.to(recipient.position, {
-						x: recipient.position.x + 10,
-						yoyo: true,
-						repeat: 5,
-						duration: 0.08,
-					});
-
-					gsap.to(recipient, {
-						opacity: 0,
-						repeat: 5,
-						yoyo: true,
-						duration: 0.08,
-					});
-				},
-			})
-			.to(this.position, {
-				x: this.position.x,
-				y: this.position.y,
-			});
+				break;
+			case "Fireball":
+				break;
+			default:
+				break;
+		}
 	}
 }
 
