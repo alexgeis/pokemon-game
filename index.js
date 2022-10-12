@@ -139,7 +139,7 @@ const battle = {
 };
 
 function animate() {
-	window.requestAnimationFrame(animate);
+	const animationId = window.requestAnimationFrame(animate);
 	background.draw();
 	boundaries.forEach((boundary) => {
 		boundary.draw();
@@ -153,6 +153,8 @@ function animate() {
 	// MOVEMENT //
 	let moving = true;
 	player.moving = false;
+
+	log(animationId);
 	// Battle activation
 	if (battle.initiated) return; // skip battle activation if in battle
 
@@ -185,7 +187,22 @@ function animate() {
 				Math.random() < 0.02
 			) {
 				log("BATTLE TIME");
+				// deactive current animation loop
+				window.cancelAnimationFrame(animationId);
 				battle.initiated = true;
+				gsap.to("#overlapWrap", {
+					opacity: 1,
+					repeat: 3,
+					yoyo: true,
+					duration: 0.4,
+					onComplete() {
+						gsap.to("#overlapWrap", {
+							opacity: 1,
+							duration: 0.4,
+						});
+						// active new animation loop
+					},
+				});
 				break;
 			}
 		}

@@ -9,7 +9,7 @@ body {
     position: relative;
 }
 
-#battleWrap {
+#overlapWrap {
     position: absolute;
     background-color: black;
     top: 0;
