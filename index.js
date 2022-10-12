@@ -1,6 +1,7 @@
 function log(input) {
 	console.log(input);
 }
+log(gsap);
 
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d"); // c refers to context
@@ -150,7 +151,8 @@ function animate() {
 	foreground.draw();
 
 	// MOVEMENT //
-
+	let moving = true;
+	player.moving = false;
 	// Battle activation
 	if (battle.initiated) return; // skip battle activation if in battle
 
@@ -189,8 +191,6 @@ function animate() {
 		}
 	}
 
-	let moving = true;
-	player.moving = false;
 	if (keys.down.pressed && lastKey === "down") {
 		player.moving = true;
 		player.image = player.sprites.down;

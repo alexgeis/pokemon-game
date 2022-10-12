@@ -3,3 +3,19 @@ body {
     display: flex;
     justify-content: center;
 }
+
+#siteWrap {
+    display: inline-block;
+    position: relative;
+}
+
+#battleWrap {
+    position: absolute;
+    background-color: black;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    opacity: 0;
+}

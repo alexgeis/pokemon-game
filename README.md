@@ -235,7 +235,8 @@ Helpful resources and kudos.
 - [Choose an Open Source License](https://choosealicense.com)
 - [Img Shields](https://shields.io)
 - [GitHub Pages](https://pages.github.com)
-- Shoutout to Christopher Lis over at [Chris Courses](https://github.com/chriscourses) for the walkthrough
+- Shoutout to Christopher Lis over at [Chris Courses](https://github.com/chriscourses) for the [walkthrough](https://www.youtube.com/watch?v=yP5DKzriqXA)
+- GSAP animation library - [gsap - CDN](https://cdnjs.com/libraries/gsap)
 <!-- - [Font Awesome](https://fontawesome.com)
 - [React Icons](https://react-icons.github.io/react-icons/search)
 - [Markdown Studio](https://readme.so/editor)
