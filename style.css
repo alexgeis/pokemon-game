@@ -85,7 +85,7 @@ body {
     font-size: 16px;
 }
 
-#healthBarWrap {
+.healthBarWrap {
     position: relative;
 }
 
@@ -103,9 +103,9 @@ body {
     right: 0;
     background-color: green;
 }
-#currHealthMon1 {
-    width: 50%;
+#currHealthEnemy {
+    width: 100%;
 }
-#currHealthMon2 {
-    width: 10%;
+#currHealthPlayer {
+    width: 100%;
 }

@@ -17,9 +17,12 @@ class Sprite {
 		};
 		this.animate = animate;
 		this.sprites = sprites;
+		this.opacity = 1;
 	}
 
 	draw() {
+		c.save();
+		c.globalAlpha = this.opacity;
 		c.drawImage(
 			this.image,
 			// image crop arguments
@@ -34,6 +37,7 @@ class Sprite {
 			this.image.width / this.frames.max,
 			this.image.height
 		);
+		c.restore();
 
 		if (!this.animate) return;
 
@@ -45,6 +49,42 @@ class Sprite {
 			if (this.frames.val < this.frames.max - 1) this.frames.val++;
 			else this.frames.val = 0;
 		}
+	}
+
+	attack({ attack, recipient }) {
+		const tl = gsap.timeline();
+		tl.to(this.position, {
+			x: this.position.x - 20,
+		})
+			.to(this.position, {
+				x: this.position.x + 40,
+				y: this.position.y - 10,
+				duration: 0.1,
+				onComplete() {
+					// enemy gets hit
+					gsap.to("#currHealthEnemy", {
+						width: "50%",
+					});
+
+					gsap.to(recipient.position, {
+						x: recipient.position.x + 10,
+						yoyo: true,
+						repeat: 5,
+						duration: 0.08,
+					});
+
+					gsap.to(recipient, {
+						opacity: 0,
+						repeat: 5,
+						yoyo: true,
+						duration: 0.08,
+					});
+				},
+			})
+			.to(this.position, {
+				x: this.position.x,
+				y: this.position.y,
+			});
 	}
 }
 
@@ -64,10 +104,29 @@ class Boundary {
 	}
 }
 
-class Attack {
-	constructor({ power, type, amount = 10 }) {
-		this.power = power;
+class Monster {
+	constructor({
+		name,
+		type,
+		attacks,
+		healthPoints = 50,
+		defense,
+		attackPower,
+	}) {
+		this.name = name;
 		this.type = type;
+		this.attacks = attacks;
+		this.healthPoints = healthPoints;
+		this.defense = defense;
+		this.attackPower = attackPower;
+	}
+}
+
+class Attack {
+	constructor({ name, type, damage, amount = 10 }) {
+		this.name = name;
+		this.type = type;
+		this.damage = damage;
 		this.amount = amount;
 	}
 }
