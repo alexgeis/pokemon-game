@@ -171,7 +171,8 @@ function animate() {
 					shape1: player,
 					shape2: battleZone,
 				}) &&
-				overlappingArea > (player.width * player.height) / 2
+				overlappingArea > (player.width * player.height) / 2 &&
+				Math.random() < 0.02
 			) {
 				log("BATTLE TIME");
 				break;
