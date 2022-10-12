@@ -201,6 +201,7 @@ function animate() {
 							duration: 0.4,
 						});
 						// active new animation loop
+						animateBattle();
 					},
 				});
 				break;
@@ -324,6 +325,11 @@ function animate() {
 	}
 }
 animate();
+
+function animateBattle() {
+	window.requestAnimationFrame(animateBattle);
+	log("animate BATTLE");
+}
 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
