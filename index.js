@@ -1,7 +1,6 @@
 function log(input) {
 	console.log(input);
 }
-log(gsap);
 
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d"); // c refers to context
@@ -187,6 +186,7 @@ function animate() {
 				Math.random() < 0.02
 			) {
 				log("BATTLE TIME");
+
 				// deactive current animation loop
 				window.cancelAnimationFrame(animationId);
 				battle.initiated = true;
@@ -199,9 +199,15 @@ function animate() {
 						gsap.to("#overlapWrap", {
 							opacity: 1,
 							duration: 0.4,
+							onComplete() {
+								// active new animation loop
+								animateBattle();
+								gsap.to("#overlapWrap", {
+									opacity: 0,
+									duration: 0.4,
+								});
+							},
 						});
-						// active new animation loop
-						animateBattle();
 					},
 				});
 				break;
@@ -324,12 +330,22 @@ function animate() {
 		}
 	}
 }
-animate();
+// animate(); // FOR TESTING, UNCOMMENT WHEN FINISHED
 
+const battleBackgroundImg = new Image();
+battleBackgroundImg.src = "./img/game_assets/battleBackground.png";
+const battleBackground = new Sprite({
+	position: {
+		x: 0,
+		y: 0,
+	},
+	image: battleBackgroundImg,
+});
 function animateBattle() {
 	window.requestAnimationFrame(animateBattle);
-	log("animate BATTLE");
+	battleBackground.draw();
 }
+animateBattle();
 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
