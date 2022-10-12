@@ -54,7 +54,7 @@ class Sprite {
 		}
 	}
 
-	attack({ attack, recipient }) {
+	attack({ attack, recipient, renderedSprites }) {
 		switch (attack.name) {
 			case "Tackle":
 				const tl = gsap.timeline();
@@ -102,6 +102,18 @@ class Sprite {
 
 				break;
 			case "Fireball":
+				const fireballImg = new Image();
+				fireballImg.src = "./img/game_assets/fireball.png";
+				const fireball = new Sprite({
+					position: {
+						x: this.position.x,
+						y: this.position.x,
+					},
+					image: fireballImg,
+				});
+
+				renderedSprites.push(fireball);
+
 				break;
 			default:
 				break;

@@ -373,11 +373,12 @@ const emby = new Sprite({
 	animate: true,
 });
 
+const renderedSprites = [battleBackground, draggle, emby];
 function animateBattle() {
 	window.requestAnimationFrame(animateBattle);
-	battleBackground.draw();
-	draggle.draw();
-	emby.draw();
+	for (const sprite of renderedSprites) {
+		sprite.draw();
+	}
 }
 animateBattle();
 
@@ -389,6 +390,7 @@ document.querySelectorAll(".attack").forEach((button) => {
 		emby.attack({
 			attack: attacks[targetAttack],
 			recipient: draggle,
+			renderedSprites,
 		});
 	});
 });
