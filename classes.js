@@ -6,6 +6,7 @@ class Sprite {
 		sprites,
 		animate = false,
 		isEnemy = false,
+		rotation = 0,
 		velocity,
 	}) {
 		this.position = position;
@@ -21,10 +22,20 @@ class Sprite {
 		this.opacity = 1;
 		this.health = 100;
 		this.isEnemy = isEnemy;
+		this.rotation = rotation;
 	}
 
 	draw() {
 		c.save();
+		c.translate(
+			this.position.x + this.width / 2,
+			this.position.y + this.height / 2
+		);
+		c.rotate(this.rotation);
+		c.translate(
+			-this.position.x - this.width / 2,
+			-this.position.y - this.height / 2
+		);
 		c.globalAlpha = this.opacity;
 		c.drawImage(
 			this.image,
@@ -59,6 +70,9 @@ class Sprite {
 		if (this.isEnemy) healthBar = "#currHealthPlayer";
 
 		this.health -= attack.damage;
+
+		let rotation = 1;
+		if (this.isEnemy) rotation = -2.2;
 
 		switch (attack.name) {
 			case "Tackle":
@@ -115,15 +129,14 @@ class Sprite {
 						hold: 10,
 					},
 					animate: true,
+					rotation,
 				});
-
-				renderedSprites.push(fireball);
+				renderedSprites.splice(1, 0, fireball);
 
 				gsap.to(fireball.position, {
 					x: recipient.position.x,
 					y: recipient.position.y,
 					onComplete: () => {
-						renderedSprites.pop();
 						// enemy gets hit
 						gsap.to(healthBar, {
 							width: this.health + "%",
@@ -142,6 +155,7 @@ class Sprite {
 							yoyo: true,
 							duration: 0.08,
 						});
+						renderedSprites.splice(1, 1);
 					},
 				});
 

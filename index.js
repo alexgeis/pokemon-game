@@ -373,9 +373,10 @@ const emby = new Sprite({
 	animate: true,
 });
 
-const renderedSprites = [battleBackground, draggle, emby];
+const renderedSprites = [draggle, emby];
 function animateBattle() {
 	window.requestAnimationFrame(animateBattle);
+	battleBackground.draw();
 	for (const sprite of renderedSprites) {
 		sprite.draw();
 	}
