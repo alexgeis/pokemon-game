@@ -5,12 +5,47 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Mon Game</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
 		<div id="siteWrap">
 			<div id="overlapWrap"></div>
+
+			<div id="healthMon1" class="health">
+				<h2>Draggle</h2>
+				<div id="healthBarWrap">
+					<div class="healthBar fullHealth"></div>
+					<div class="healthBar currHealth" id="currHealthMon1"></div>
+				</div>
+			</div>
+
+			<div id="healthMon2" class="health">
+				<h2>Emby</h2>
+				<div id="healthBarWrap">
+					<div class="healthBar fullHealth"></div>
+					<div class="healthBar currHealth" id="currHealthMon2"></div>
+				</div>
+			</div>
+
 			<canvas></canvas>
+
+			<div id="battleInterface">
+				<div id="attacks">
+					<button id="attack1" class="attack">Tackle</button>
+					<button id="attack2" class="attack">Attack 2</button>
+					<button id="attack3" class="attack">Attack 3</button>
+					<button id="attack4" class="attack">Attack 4</button>
+				</div>
+				<div id="attackType">
+					<h1>Attack Type</h1>
+				</div>
+			</div>
 		</div>
 
 		<!-- JS -->

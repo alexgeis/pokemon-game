@@ -1,3 +1,10 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Press Start 2P', cursive;
+}
+
 body {
     background-color: black;
     display: flex;
@@ -7,6 +14,7 @@ body {
 #siteWrap {
     display: inline-block;
     position: relative;
+    margin: .5rem;
 }
 
 #overlapWrap {
@@ -18,4 +26,86 @@ body {
     right: 0;
     pointer-events: none;
     opacity: 0;
+}
+
+#battleInterface {
+    position: absolute;
+    background-color: white;
+    height: 140px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 4px black solid;
+    display: flex;
+}
+
+#attacks {
+    width: 66.66%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#attacks button {
+    border: 1px solid black;
+    font-size: 16px;
+}
+#attacks button:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+#attackType {
+    width: 33.33%;
+    border-left: 4px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#attackType h1 {
+    font-size: 16px;
+}
+
+.health {
+    position: absolute;
+    background-color: white;
+    width: 250px;
+    border: 4px solid black;
+    padding: 12px;
+}
+#healthMon1 {
+    top: 50px;
+    left: 50px;
+}
+#healthMon2 {
+    bottom: 190px;
+    right: 50px;
+}
+.health h2 {
+    font-size: 16px;
+}
+
+#healthBarWrap {
+    position: relative;
+}
+
+.healthBar {
+    height: 5px;
+}
+.fullHealth {
+    margin-top: 10px;
+    background-color: #ccc;
+}
+.currHealth {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: green;
+}
+#currHealthMon1 {
+    width: 50%;
+}
+#currHealthMon2 {
+    width: 10%;
 }

@@ -63,3 +63,11 @@ class Boundary {
 		c.fillRect(this.position.x, this.position.y, this.width, this.height);
 	}
 }
+
+class Attack {
+	constructor({ power, type, amount = 10 }) {
+		this.power = power;
+		this.type = type;
+		this.amount = amount;
+	}
+}
