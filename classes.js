@@ -55,17 +55,17 @@ class Sprite {
 	}
 
 	attack({ attack, recipient, renderedSprites }) {
+		let healthBar = "#currHealthEnemy";
+		if (this.isEnemy) healthBar = "#currHealthPlayer";
+
+		this.health -= attack.damage;
+
 		switch (attack.name) {
 			case "Tackle":
 				const tl = gsap.timeline();
 
-				this.health -= attack.damage;
-
 				let movementDistance = 10;
 				if (this.isEnemy) movementDistance = -10;
-
-				let healthBar = "#currHealthEnemy";
-				if (this.isEnemy) healthBar = "#currHealthPlayer";
 
 				tl.to(this.position, {
 					x: this.position.x - movementDistance * 2,
@@ -107,12 +107,43 @@ class Sprite {
 				const fireball = new Sprite({
 					position: {
 						x: this.position.x,
-						y: this.position.x,
+						y: this.position.y,
 					},
 					image: fireballImg,
+					frames: {
+						max: 4,
+						hold: 10,
+					},
+					animate: true,
 				});
 
 				renderedSprites.push(fireball);
+
+				gsap.to(fireball.position, {
+					x: recipient.position.x,
+					y: recipient.position.y,
+					onComplete: () => {
+						renderedSprites.pop();
+						// enemy gets hit
+						gsap.to(healthBar, {
+							width: this.health + "%",
+						});
+
+						gsap.to(recipient.position, {
+							x: recipient.position.x + 10,
+							yoyo: true,
+							repeat: 5,
+							duration: 0.08,
+						});
+
+						gsap.to(recipient, {
+							opacity: 0,
+							repeat: 5,
+							yoyo: true,
+							duration: 0.08,
+						});
+					},
+				});
 
 				break;
 			default:
