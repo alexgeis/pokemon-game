@@ -133,6 +133,10 @@ function shapeCollision({ shape1, shape2 }) {
 	);
 }
 
+const battle = {
+	initiated: false,
+};
+
 function animate() {
 	window.requestAnimationFrame(animate);
 	background.draw();
@@ -145,7 +149,11 @@ function animate() {
 	player.draw();
 	foreground.draw();
 
-	// MOVEMENT
+	// MOVEMENT //
+
+	// Battle activation
+	if (battle.initiated) return; // skip battle activation if in battle
+
 	if (
 		keys.up.pressed ||
 		keys.down.pressed ||
@@ -175,6 +183,7 @@ function animate() {
 				Math.random() < 0.02
 			) {
 				log("BATTLE TIME");
+				battle.initiated = true;
 				break;
 			}
 		}
