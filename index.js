@@ -151,7 +151,7 @@ function animate() {
 
 	// MOVEMENT //
 	let moving = true;
-	player.moving = false;
+	player.animate = false;
 
 	log(animationId);
 	// Battle activation
@@ -216,7 +216,7 @@ function animate() {
 	}
 
 	if (keys.down.pressed && lastKey === "down") {
-		player.moving = true;
+		player.animate = true;
 		player.image = player.sprites.down;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
@@ -245,7 +245,7 @@ function animate() {
 		}
 		// background.position.y -= playerDownImage.height / 4 / 2;
 	} else if (keys.up.pressed && lastKey === "up") {
-		player.moving = true;
+		player.animate = true;
 		player.image = player.sprites.up;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
@@ -273,7 +273,7 @@ function animate() {
 			});
 		}
 	} else if (keys.left.pressed && lastKey === "left") {
-		player.moving = true;
+		player.animate = true;
 		player.image = player.sprites.left;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
@@ -301,7 +301,7 @@ function animate() {
 			});
 		}
 	} else if (keys.right.pressed && lastKey === "right") {
-		player.moving = true;
+		player.animate = true;
 		player.image = player.sprites.right;
 		for (let i = 0; i < boundaries.length; i++) {
 			const boundary = boundaries[i];
@@ -341,9 +341,39 @@ const battleBackground = new Sprite({
 	},
 	image: battleBackgroundImg,
 });
+
+const draggleImage = new Image();
+draggleImage.src = "./img/game_assets/draggleSprite.png";
+const draggle = new Sprite({
+	position: {
+		x: 800,
+		y: 100,
+	},
+	image: draggleImage,
+	frames: {
+		max: 4,
+	},
+	animate: true,
+});
+const embyImage = new Image();
+embyImage.src = "./img/game_assets/embySprite.png";
+const emby = new Sprite({
+	position: {
+		x: 280,
+		y: 325,
+	},
+	image: embyImage,
+	frames: {
+		max: 4,
+	},
+	animate: true,
+});
+
 function animateBattle() {
 	window.requestAnimationFrame(animateBattle);
 	battleBackground.draw();
+	draggle.draw();
+	emby.draw();
 }
 animateBattle();
 
