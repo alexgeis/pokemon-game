@@ -23,7 +23,7 @@ class Sprite {
 		c.drawImage(
 			this.image,
 			// image crop arguments
-			this.frames.val * 48,
+			this.frames.val * this.width,
 			0,
 			this.image.width / this.frames.max,
 			this.image.height,
