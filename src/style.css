@@ -134,3 +134,7 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
+#gameInstructions div {
+    margin-top: 1rem;
+}
