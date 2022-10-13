@@ -83,9 +83,9 @@ class Monster extends Sprite {
 	constructor({
 		name,
 		isEnemy = false,
-		type,
-		healthPoints = 50,
 		attacks,
+		// future params
+		type,
 		defense,
 		attackPower,
 		// sprite parameters
@@ -110,8 +110,8 @@ class Monster extends Sprite {
 		this.health = 100;
 		this.attacks = attacks;
 		this.isEnemy = isEnemy;
+		// future props to implements
 		this.type = type;
-		this.healthPoints = healthPoints;
 		this.defense = defense;
 		this.attackPower = attackPower;
 		// Sprite props
@@ -126,7 +126,8 @@ class Monster extends Sprite {
 		let healthBar = "#currHealthEnemy";
 		if (this.isEnemy) healthBar = "#currHealthPlayer";
 
-		this.health -= attack.damage;
+		recipient.health -= attack.damage;
+		if (recipient.health < 1) recipient.health = 0;
 
 		let rotation = 1;
 		if (this.isEnemy) rotation = -2.2;
@@ -148,7 +149,7 @@ class Monster extends Sprite {
 						onComplete: () => {
 							// enemy gets hit
 							gsap.to(healthBar, {
-								width: this.health + "%",
+								width: recipient.health + "%",
 							});
 
 							gsap.to(recipient.position, {
@@ -196,9 +197,10 @@ class Monster extends Sprite {
 					onComplete: () => {
 						// enemy gets hit
 						gsap.to(healthBar, {
-							width: this.health + "%",
+							width: recipient.health + "%",
 						});
 
+						console.log(recipient.health);
 						gsap.to(recipient.position, {
 							x: recipient.position.x + 10,
 							yoyo: true,
@@ -217,9 +219,19 @@ class Monster extends Sprite {
 				});
 
 				break;
-			default:
-				break;
 		}
+	}
+
+	faint() {
+		document.querySelector(
+			"#battleContent"
+		).innerHTML = `${this.name} fainted!`;
+		gsap.to(this.position, {
+			y: this.position.y + 20,
+		});
+		gsap.to(this, {
+			opacity: 0,
+		});
 	}
 }
 

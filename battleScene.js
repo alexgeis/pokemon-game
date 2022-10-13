@@ -43,6 +43,15 @@ document.querySelectorAll(".attack").forEach((button) => {
 			renderedSprites,
 		});
 
+		// enemy attacks
+		if (draggle.health <= 0) {
+			queue.push(() => {
+				draggle.faint();
+			});
+
+			// return;
+		}
+
 		const randomAttackIndex = Math.floor(
 			Math.random() * draggle.attacks.length
 		);
@@ -53,6 +62,12 @@ document.querySelectorAll(".attack").forEach((button) => {
 				recipient: emby,
 				renderedSprites,
 			});
+
+			if (emby.health <= 0) {
+				queue.push(() => {
+					emby.faint();
+				});
+			}
 		});
 	});
 
@@ -72,5 +87,5 @@ document.querySelector("#battleContent").addEventListener("click", (e) => {
 	if (queue.length > 0) {
 		queue[0]();
 		queue.shift();
-	} else e.target.style.display = "none";
+	} else e.currentTarget.style.display = "none";
 });
