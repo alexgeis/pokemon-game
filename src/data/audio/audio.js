@@ -44,4 +44,19 @@ const audio = {
 	}),
 };
 
+// play audio once user interacts with page
+let clicked = false;
+window.addEventListener("click", () => {
+	if (!clicked) {
+		audio.map.play();
+		clicked = true;
+	}
+});
+window.addEventListener("keydown", () => {
+	if (!clicked) {
+		audio.map.play();
+		clicked = true;
+	}
+});
+
 export { audio };

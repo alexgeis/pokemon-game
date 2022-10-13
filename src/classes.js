@@ -1,4 +1,4 @@
-import { c } from "./index";
+import { c } from "./gameLogic";
 import { audio } from "./data/audio/audio";
 import fireballUrl from "./img/game_assets/fireball.png";
 
