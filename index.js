@@ -333,69 +333,6 @@ function animate() {
 }
 // animate(); // FOR TESTING, UNCOMMENT WHEN FINISHED
 
-const battleBackgroundImg = new Image();
-battleBackgroundImg.src = "./img/game_assets/battleBackground.png";
-const battleBackground = new Sprite({
-	position: {
-		x: 0,
-		y: 0,
-	},
-	image: battleBackgroundImg,
-});
-
-const draggleImage = new Image();
-draggleImage.src = "./img/game_assets/draggleSprite.png";
-const draggle = new Sprite({
-	position: {
-		x: 800,
-		y: 100,
-	},
-	image: draggleImage,
-	frames: {
-		max: 4,
-		hold: 30,
-	},
-	animate: true,
-	isEnemy: true,
-});
-const embyImage = new Image();
-embyImage.src = "./img/game_assets/embySprite.png";
-const emby = new Sprite({
-	position: {
-		x: 280,
-		y: 325,
-	},
-	image: embyImage,
-	frames: {
-		max: 4,
-		hold: 30,
-	},
-	animate: true,
-});
-
-const renderedSprites = [draggle, emby];
-function animateBattle() {
-	window.requestAnimationFrame(animateBattle);
-	battleBackground.draw();
-	for (const sprite of renderedSprites) {
-		sprite.draw();
-	}
-}
-animateBattle();
-
-document.querySelectorAll(".attack").forEach((button) => {
-	button.addEventListener("click", (e) => {
-		log(e.currentTarget.textContent);
-		const targetAttack = e.currentTarget.textContent;
-
-		emby.attack({
-			attack: attacks[targetAttack],
-			recipient: draggle,
-			renderedSprites,
-		});
-	});
-});
-
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
 	if (e.key === "s" || e.key === "ArrowDown") {
