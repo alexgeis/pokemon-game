@@ -126,3 +126,11 @@ body {
 #currHealthPlayer {
     width: 100%;
 }
+
+#gameInstructions {
+    color: white;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
