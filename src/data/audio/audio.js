@@ -1,4 +1,10 @@
-import mapUrl from "./data/audio/map.wav";
+import mapUrl from "./map.wav";
+import initBattleUrl from "./initBattle.wav";
+import battleUrl from "./battle.mp3";
+import tackleHitUrl from "./tackleHit.wav";
+import initFireballUrl from "./initFireball.wav";
+import fireballHitUrl from "./fireballHit.wav";
+import victoryUrl from "./victory.wav";
 
 const audio = {
 	map: new Howl({
@@ -7,32 +13,32 @@ const audio = {
 		volume: 0.1,
 	}),
 	initBattle: new Howl({
-		src: "./data/audio/initBattle.wav",
+		src: initBattleUrl,
 		html5: true,
 		volume: 0.01,
 	}),
 	battle: new Howl({
-		src: "./data/audio/battle.mp3",
+		src: battleUrl,
 		html5: true,
 		volume: 0.05,
 	}),
 	tackleHit: new Howl({
-		src: "./data/audio/tackleHit.wav",
+		src: tackleHitUrl,
 		html5: true,
 		volume: 0.01,
 	}),
 	initFireball: new Howl({
-		src: "./data/audio/initFireball.wav",
+		src: initFireballUrl,
 		html5: true,
 		volume: 0.05,
 	}),
 	fireballHit: new Howl({
-		src: "./data/audio/fireballHit.wav",
+		src: fireballHitUrl,
 		html5: true,
 		volume: 0.05,
 	}),
 	victory: new Howl({
-		src: "./data/audio/victory.wav",
+		src: victoryUrl,
 		html5: true,
 		volume: 0.05,
 	}),

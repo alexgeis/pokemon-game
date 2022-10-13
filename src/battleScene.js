@@ -37,7 +37,7 @@ const endBattle = () => {
 	});
 };
 
-function initBattle() {
+export function initBattle() {
 	document.querySelector("#battleWrap").style.display = "block";
 	document.querySelector("#battleContent").style.display = "none";
 	document.querySelector("#currHealthEnemy").style.width = "100%";

@@ -5,7 +5,7 @@ import playerDownImageUrl from "./img/game_assets/playerDown.png";
 import playerUpImageUrl from "./img/game_assets/playerUp.png";
 import playerLeftImageUrl from "./img/game_assets/playerLeft.png";
 import playerRightImageUrl from "./img/game_assets/playerRight.png";
-import { animateBattle } from "./battleScene";
+import { initBattle, animateBattle } from "./battleScene";
 import { Sprite, Boundary } from "./classes";
 import { audio } from "./data/audio/audio";
 import { battleZonesData } from "./data/battleData";
