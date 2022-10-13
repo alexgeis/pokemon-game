@@ -1,4 +1,6 @@
 import { c } from "./index";
+import { audio } from "./data/audio/audio";
+import fireballUrl from "./img/game_assets/fireball.png";
 
 class Sprite {
 	constructor({
@@ -179,7 +181,7 @@ class Monster extends Sprite {
 			case "Fireball":
 				audio.initFireball.play();
 				const fireballImg = new Image();
-				fireballImg.src = "./img/game_assets/fireball.png";
+				fireballImg.src = fireballUrl;
 				const fireball = new Sprite({
 					position: {
 						x: this.position.x,
@@ -206,7 +208,6 @@ class Monster extends Sprite {
 							width: recipient.health + "%",
 						});
 
-						console.log(recipient.health);
 						gsap.to(recipient.position, {
 							x: recipient.position.x + 10,
 							yoyo: true,

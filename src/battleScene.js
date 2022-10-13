@@ -1,3 +1,4 @@
+import { animate, battle } from "./index";
 import { Sprite, Monster } from "./classes";
 import { audio } from "./data/audio/audio";
 import { attacks } from "./data/attacks";

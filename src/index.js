@@ -147,11 +147,11 @@ function shapeCollision({ shape1, shape2 }) {
 	);
 }
 
-const battle = {
+export const battle = {
 	initiated: false,
 };
 
-function animate() {
+export function animate() {
 	const animationId = window.requestAnimationFrame(animate);
 	background.draw();
 	boundaries.forEach((boundary) => {
