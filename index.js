@@ -187,6 +187,11 @@ function animate() {
 			) {
 				// deactive current animation loop
 				window.cancelAnimationFrame(animationId);
+
+				audio.map.stop();
+				audio.initBattle.play();
+				audio.battle.play();
+
 				battle.initiated = true;
 				gsap.to("#overlapWrap", {
 					opacity: 1,
@@ -359,7 +364,13 @@ window.addEventListener("keyup", (e) => {
 let clicked = false;
 window.addEventListener("click", () => {
 	if (!clicked) {
-		audio.Map.play();
+		audio.map.play();
+		clicked = true;
+	}
+});
+window.addEventListener("keydown", () => {
+	if (!clicked) {
+		audio.map.play();
 		clicked = true;
 	}
 });
