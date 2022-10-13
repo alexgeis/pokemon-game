@@ -121,6 +121,11 @@ export function animateBattle() {
 	}
 }
 
+export function testBattle() {
+	initBattle();
+	animateBattle();
+}
+
 document.querySelector("#battleContent").addEventListener("click", (e) => {
 	if (queue.length > 0) {
 		queue[0]();
