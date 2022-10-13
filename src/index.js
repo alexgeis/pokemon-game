@@ -1,6 +1,8 @@
 import "./style.css";
 import { Sprite, Boundary } from "./classes";
 import { audio } from "./data/audio/audio";
+import { battleZonesData } from "./data/battleData";
+import { collisions } from "./data/collisionData";
 
 function log(input) {
 	console.log(input);

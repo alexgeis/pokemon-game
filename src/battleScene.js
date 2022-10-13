@@ -1,6 +1,8 @@
 import { Sprite, Monster } from "./classes";
 import { audio } from "./data/audio/audio";
 import { animate } from "./index";
+import { attacks } from "./data/attacks";
+import { monstersData } from "./data/monsters";
 
 const battleBackgroundImg = new Image();
 battleBackgroundImg.src = "./img/game_assets/battleBackground.png";
