@@ -4,10 +4,7 @@ import {
 	foreground,
 	boundaries,
 	battleZones,
-	playerUpImage,
 	playerDownImage,
-	playerLeftImage,
-	playerRightImage,
 } from "./render";
 import { audio } from "./data/audio/audio";
 import { initBattle, animateBattle } from "./battleScene";

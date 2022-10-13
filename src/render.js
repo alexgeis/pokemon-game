@@ -128,8 +128,5 @@ export {
 	foreground,
 	boundaries,
 	battleZones,
-	playerUpImage,
 	playerDownImage,
-	playerLeftImage,
-	playerRightImage,
 };
