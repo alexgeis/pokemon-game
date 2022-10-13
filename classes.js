@@ -5,9 +5,7 @@ class Sprite {
 		frames = { max: 1, hold: 10 },
 		sprites,
 		animate = false,
-		isEnemy = false,
 		rotation = 0,
-		name,
 		velocity,
 	}) {
 		this.position = position;
@@ -21,10 +19,7 @@ class Sprite {
 		this.animate = animate;
 		this.sprites = sprites;
 		this.opacity = 1;
-		this.health = 100;
-		this.isEnemy = isEnemy;
 		this.rotation = rotation;
-		this.name = name;
 	}
 
 	draw() {
@@ -65,6 +60,61 @@ class Sprite {
 			if (this.frames.val < this.frames.max - 1) this.frames.val++;
 			else this.frames.val = 0;
 		}
+	}
+}
+
+class Boundary {
+	// 48 px = 400% zoom on our original 12px x 12px grids
+	static width = 48;
+	static height = 48;
+	constructor({ position }) {
+		this.position = position;
+		this.width = 48;
+		this.height = 48;
+	}
+
+	draw() {
+		c.fillStyle = "rgba(255,0,0, 0.3)";
+		c.fillRect(this.position.x, this.position.y, this.width, this.height);
+	}
+}
+
+class Monster extends Sprite {
+	constructor({
+		name,
+		isEnemy = false,
+		type,
+		healthPoints = 50,
+		attacks,
+		defense,
+		attackPower,
+		// sprite parameters
+		position,
+		image,
+		frames = { max: 1, hold: 10 },
+		sprites,
+		animate = false,
+		rotation = 0,
+		velocity,
+	}) {
+		super({
+			position,
+			image,
+			frames,
+			sprites,
+			animate,
+			rotation,
+			velocity,
+		});
+		this.name = name;
+		this.health = 100;
+		this.attacks = attacks;
+		this.isEnemy = isEnemy;
+		this.type = type;
+		this.healthPoints = healthPoints;
+		this.defense = defense;
+		this.attackPower = attackPower;
+		// Sprite props
 	}
 
 	attack({ attack, recipient, renderedSprites }) {
@@ -170,40 +220,6 @@ class Sprite {
 			default:
 				break;
 		}
-	}
-}
-
-class Boundary {
-	// 48 px = 400% zoom on our original 12px x 12px grids
-	static width = 48;
-	static height = 48;
-	constructor({ position }) {
-		this.position = position;
-		this.width = 48;
-		this.height = 48;
-	}
-
-	draw() {
-		c.fillStyle = "rgba(255,0,0, 0.3)";
-		c.fillRect(this.position.x, this.position.y, this.width, this.height);
-	}
-}
-
-class Monster {
-	constructor({
-		name,
-		type,
-		attacks,
-		healthPoints = 50,
-		defense,
-		attackPower,
-	}) {
-		this.name = name;
-		this.type = type;
-		this.attacks = attacks;
-		this.healthPoints = healthPoints;
-		this.defense = defense;
-		this.attackPower = attackPower;
 	}
 }
 

@@ -8,11 +8,16 @@ const battleBackground = new Sprite({
 	image: battleBackgroundImg,
 });
 
-const draggle = new Sprite(monstersData.Draggle);
-const emby = new Sprite(monstersData.Emby);
+const draggle = new Monster(monstersData.Draggle);
+const emby = new Monster(monstersData.Emby);
+console.log(emby);
 
-const button = document.createElement("button");
-button.textContent = document.querySelector("#attacks").append();
+for (const attack of emby.attacks) {
+	const button = document.createElement("button");
+	button.innerHTML = attack.name;
+	button.classList.add("attack");
+	document.querySelector("#attacks").append(button);
+}
 
 const renderedSprites = [draggle, emby];
 
@@ -30,29 +35,36 @@ const queue = [];
 document.querySelectorAll(".attack").forEach((button) => {
 	button.addEventListener("click", (e) => {
 		log(e.currentTarget.textContent);
-		const targetAttack = e.currentTarget.textContent;
+		const targetAttack = attacks[e.currentTarget.innerHTML];
 
 		emby.attack({
-			attack: attacks[targetAttack],
+			attack: targetAttack,
 			recipient: draggle,
 			renderedSprites,
 		});
 
+		const randomAttackIndex = Math.floor(
+			Math.random() * draggle.attacks.length
+		);
+		const randomAttack = draggle.attacks[randomAttackIndex];
 		queue.push(() => {
 			draggle.attack({
-				attack: attacks.Tackle,
+				attack: randomAttack,
 				recipient: emby,
 				renderedSprites,
 			});
 		});
+	});
 
-		queue.push(() => {
-			draggle.attack({
-				attack: attacks.Fireball,
-				recipient: emby,
-				renderedSprites,
-			});
-		});
+	button.addEventListener("mouseenter", (e) => {
+		const targetAttack = attacks[e.currentTarget.innerHTML];
+		document.querySelector("#attackTypeText").textContent = targetAttack.type;
+		document.querySelector("#attackTypeText").style.color = targetAttack.color;
+	});
+
+	button.addEventListener("mouseleave", () => {
+		document.querySelector("#attackTypeText").textContent = "Attack Type";
+		document.querySelector("#attackTypeText").style.color = "black";
 	});
 });
 
