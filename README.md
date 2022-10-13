@@ -31,7 +31,7 @@
     <a href="https://github.com/alexgeis/pokemon-game"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a class="deployed_link" href="https://alexgeis.github.io/pokemon-game/">View Demo</a>
+    <a class="deployed_link" href="https://mon-game.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/alexgeis/pokemon-game/issues">Report Bug</a>
     ·
@@ -69,7 +69,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://alexgeis.github.io/pokemon-game/)
+[![Product Name Screen Shot][product-screenshot]](https://mon-game.netlify.app/)
 
 <!-- <a class="https://alexgeis.github.io/pokemon-game/" href="https://example.com">
 
@@ -262,4 +262,4 @@ Helpful resources and kudos.
 [license-url]: https://github.com/alexgeis/pokemon-game/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/alexngeis
-[product-screenshot]: img/readme/pokemon-game-screenshot.png
+[product-screenshot]: /src/img/readme/pokemon-game-screenshot.png
