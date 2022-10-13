@@ -21,22 +21,17 @@ export const c = canvas.getContext("2d"); // c refers to context
 canvas.width = 1024;
 canvas.height = 576;
 
-let collisionsMap = [];
-for (let i = 0; i < collisions.length; i += 70) {
-	collisionsMap.push(collisions.slice(i, i + 70));
-}
-
-let battleZonesMap = [];
-for (let i = 0; i < battleZonesData.length; i += 70) {
-	battleZonesMap.push(battleZonesData.slice(i, i + 70));
-}
-
-const boundaries = [];
 const offset = {
 	x: -1408,
 	y: -1130,
 };
 
+// collisions / boundaries
+let collisionsMap = [];
+for (let i = 0; i < collisions.length; i += 70) {
+	collisionsMap.push(collisions.slice(i, i + 70));
+}
+const boundaries = [];
 collisionsMap.forEach((row, i) => {
 	row.forEach((value, j) => {
 		if (value === 1025) {
@@ -51,6 +46,12 @@ collisionsMap.forEach((row, i) => {
 		}
 	});
 });
+
+// battle areas
+let battleZonesMap = [];
+for (let i = 0; i < battleZonesData.length; i += 70) {
+	battleZonesMap.push(battleZonesData.slice(i, i + 70));
+}
 
 const battleZones = [];
 battleZonesMap.forEach((row, i) => {
@@ -85,11 +86,12 @@ playerRightImage.src = playerRightImageUrl;
 
 const playerWidth = 192;
 const playerHeight = 68;
-const mvmtDistance = playerDownImage.height / 4 / 2;
+const mvmtDistance = playerDownImage.height / 8;
 
 const player = new Sprite({
+	// place in center of canvas
 	position: {
-		x: canvas.width / 2 - playerWidth / 4 / 2,
+		x: canvas.width / 2 - playerWidth / 8,
 		y: canvas.height / 2 - playerHeight / 2,
 	},
 	image: playerDownImage,
@@ -256,10 +258,10 @@ export function animate() {
 
 		if (moving) {
 			movables.forEach((movable) => {
-				movable.position.y -= playerDownImage.height / 4 / 2;
+				movable.position.y -= playerDownImage.height / 8;
 			});
 		}
-		// background.position.y -= playerDownImage.height / 4 / 2;
+		// background.position.y -= playerDownImage.height / 8;
 	} else if (keys.up.pressed && lastKey === "up") {
 		player.animate = true;
 		player.image = player.sprites.up;
@@ -272,7 +274,7 @@ export function animate() {
 						...boundary,
 						position: {
 							x: boundary.position.x,
-							y: boundary.position.y + playerDownImage.height / 4 / 2,
+							y: boundary.position.y + playerDownImage.height / 8,
 						},
 					},
 				})
@@ -284,7 +286,7 @@ export function animate() {
 
 		if (moving) {
 			movables.forEach((movable) => {
-				movable.position.y += playerDownImage.height / 4 / 2;
+				movable.position.y += playerDownImage.height / 8;
 			});
 		}
 	} else if (keys.left.pressed && lastKey === "left") {
@@ -298,7 +300,7 @@ export function animate() {
 					shape2: {
 						...boundary,
 						position: {
-							x: boundary.position.x + playerDownImage.height / 4 / 2,
+							x: boundary.position.x + playerDownImage.height / 8,
 							y: boundary.position.y,
 						},
 					},
@@ -311,7 +313,7 @@ export function animate() {
 
 		if (moving) {
 			movables.forEach((movable) => {
-				movable.position.x += playerDownImage.height / 4 / 2;
+				movable.position.x += playerDownImage.height / 8;
 			});
 		}
 	} else if (keys.right.pressed && lastKey === "right") {
@@ -325,7 +327,7 @@ export function animate() {
 					shape2: {
 						...boundary,
 						position: {
-							x: boundary.position.x - playerDownImage.height / 4 / 2,
+							x: boundary.position.x - playerDownImage.height / 8,
 							y: boundary.position.y,
 						},
 					},
@@ -338,7 +340,7 @@ export function animate() {
 
 		if (moving) {
 			movables.forEach((movable) => {
-				movable.position.x -= playerDownImage.height / 4 / 2;
+				movable.position.x -= playerDownImage.height / 8;
 			});
 		}
 	}
