@@ -1,6 +1,5 @@
 import { Sprite, Monster } from "./classes";
 import { audio } from "./data/audio/audio";
-import { animate } from "./index";
 import { attacks } from "./data/attacks";
 import { monstersData } from "./data/monsters";
 
@@ -122,7 +121,7 @@ export function animateBattle() {
 	}
 }
 
-animate();
+// animate();
 // initBattle();
 // animateBattle();
 

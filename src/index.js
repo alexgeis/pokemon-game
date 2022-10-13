@@ -343,7 +343,7 @@ function animate() {
 		}
 	}
 }
-// animate(); // FOR TESTING, UNCOMMENT WHEN FINISHED
+animate();
 
 let lastKey = "";
 window.addEventListener("keydown", (e) => {
@@ -387,5 +387,3 @@ window.addEventListener("keydown", () => {
 		clicked = true;
 	}
 });
-
-export { animate };
