@@ -1,4 +1,6 @@
 import "./style.css";
+import { Sprite, Boundary } from "./classes";
+import { audio } from "./data/audio/audio";
 
 function log(input) {
 	console.log(input);
@@ -376,3 +378,5 @@ window.addEventListener("keydown", () => {
 		clicked = true;
 	}
 });
+
+export { animate };

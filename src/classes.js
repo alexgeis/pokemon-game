@@ -249,3 +249,5 @@ class Attack {
 		this.amount = amount;
 	}
 }
+
+export { Sprite, Boundary, Monster };

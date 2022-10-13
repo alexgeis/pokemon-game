@@ -35,3 +35,5 @@ const audio = {
 		volume: 0.05,
 	}),
 };
+
+export { audio };
