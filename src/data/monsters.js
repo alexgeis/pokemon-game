@@ -1,3 +1,8 @@
+import { attacks } from "./attacks";
+
+import embyImgUrl from "../img/game_assets/embySprite.png";
+import draggleImgUrl from "../img/game_assets/draggleSprite.png";
+
 export const monstersData = {
 	Emby: {
 		position: {
@@ -5,7 +10,7 @@ export const monstersData = {
 			y: 325,
 		},
 		image: {
-			src: "./img/game_assets/embySprite.png",
+			src: embyImgUrl,
 		},
 		frames: {
 			max: 4,
@@ -21,7 +26,7 @@ export const monstersData = {
 			y: 100,
 		},
 		image: {
-			src: "./img/game_assets/draggleSprite.png",
+			src: draggleImgUrl,
 		},
 		frames: {
 			max: 4,

@@ -58,7 +58,6 @@ export function initBattle() {
 
 	document.querySelectorAll(".attack").forEach((button) => {
 		button.addEventListener("click", (e) => {
-			log(e.currentTarget.textContent);
 			const targetAttack = attacks[e.currentTarget.innerHTML];
 
 			emby.attack({
@@ -116,15 +115,10 @@ export function animateBattle() {
 	battleAnimationId = window.requestAnimationFrame(animateBattle);
 	battleBackground.draw();
 
-	console.log(battleAnimationId);
 	for (const sprite of renderedSprites) {
 		sprite.draw();
 	}
 }
-
-// animate();
-// initBattle();
-// animateBattle();
 
 document.querySelector("#battleContent").addEventListener("click", (e) => {
 	if (queue.length > 0) {
