@@ -112,7 +112,7 @@ function initBattle() {
 	});
 }
 
-function animateBattle() {
+export function animateBattle() {
 	battleAnimationId = window.requestAnimationFrame(animateBattle);
 	battleBackground.draw();
 

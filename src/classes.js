@@ -1,3 +1,5 @@
+import { c } from "./index";
+
 class Sprite {
 	constructor({
 		position,

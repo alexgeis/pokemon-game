@@ -1,4 +1,11 @@
 import "./style.css";
+import backgroundImageUrl from "./img/game_assets/pokemonGameMap400.png";
+import foregroundImageUrl from "./img/game_assets/pokemonGameMapFOREGROUND.png";
+import playerDownImageUrl from "./img/game_assets/playerDown.png";
+import playerUpImageUrl from "./img/game_assets/playerUp.png";
+import playerLeftImageUrl from "./img/game_assets/playerLeft.png";
+import playerRightImageUrl from "./img/game_assets/playerRight.png";
+import { animateBattle } from "./battleScene";
 import { Sprite, Boundary } from "./classes";
 import { audio } from "./data/audio/audio";
 import { battleZonesData } from "./data/battleData";
@@ -9,7 +16,7 @@ function log(input) {
 }
 
 const canvas = document.querySelector("canvas");
-const c = canvas.getContext("2d"); // c refers to context
+export const c = canvas.getContext("2d"); // c refers to context
 
 canvas.width = 1024;
 canvas.height = 576;
@@ -62,19 +69,19 @@ battleZonesMap.forEach((row, i) => {
 });
 
 const image = new Image(); // creates HTML img element
-image.src = "./img/game_assets/pokemonGameMap400.png";
+image.src = backgroundImageUrl;
 
 const foregroundImage = new Image();
-foregroundImage.src = "./img/game_assets/pokemonGameMapFOREGROUND.png";
+foregroundImage.src = foregroundImageUrl;
 
 const playerDownImage = new Image();
-playerDownImage.src = "./img/game_assets/playerDown.png";
+playerDownImage.src = playerDownImageUrl;
 const playerUpImage = new Image();
-playerUpImage.src = "./img/game_assets/playerUp.png";
+playerUpImage.src = playerUpImageUrl;
 const playerLeftImage = new Image();
-playerLeftImage.src = "./img/game_assets/playerLeft.png";
+playerLeftImage.src = playerLeftImageUrl;
 const playerRightImage = new Image();
-playerRightImage.src = "./img/game_assets/playerRight.png";
+playerRightImage.src = playerRightImageUrl;
 
 const playerWidth = 192;
 const playerHeight = 68;
