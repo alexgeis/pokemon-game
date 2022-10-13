@@ -202,6 +202,7 @@ function animate() {
 							duration: 0.4,
 							onComplete() {
 								// active new animation loop
+								initBattle();
 								animateBattle();
 								gsap.to("#overlapWrap", {
 									opacity: 0,
