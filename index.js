@@ -154,7 +154,6 @@ function animate() {
 	let moving = true;
 	player.animate = false;
 
-	log(animationId);
 	// Battle activation
 	if (battle.initiated) return; // skip battle activation if in battle
 
@@ -186,8 +185,6 @@ function animate() {
 				overlappingArea > (player.width * player.height) / 2 &&
 				Math.random() < 0.02
 			) {
-				log("BATTLE TIME");
-
 				// deactive current animation loop
 				window.cancelAnimationFrame(animationId);
 				battle.initiated = true;
@@ -234,7 +231,6 @@ function animate() {
 					},
 				})
 			) {
-				log("COLLIDE");
 				moving = false;
 				break;
 			}
@@ -263,7 +259,6 @@ function animate() {
 					},
 				})
 			) {
-				log("COLLIDE");
 				moving = false;
 				break;
 			}
@@ -291,7 +286,6 @@ function animate() {
 					},
 				})
 			) {
-				log("COLLIDE");
 				moving = false;
 				break;
 			}
@@ -319,7 +313,6 @@ function animate() {
 					},
 				})
 			) {
-				log("COLLIDE");
 				moving = false;
 				break;
 			}
@@ -360,5 +353,13 @@ window.addEventListener("keyup", (e) => {
 		keys.left.pressed = false;
 	} else if (e.key === "w" || e.key === "ArrowUp") {
 		keys.up.pressed = false;
+	}
+});
+
+let clicked = false;
+window.addEventListener("click", () => {
+	if (!clicked) {
+		audio.Map.play();
+		clicked = true;
 	}
 });

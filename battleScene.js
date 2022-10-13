@@ -114,8 +114,10 @@ function animateBattle() {
 		sprite.draw();
 	}
 }
-initBattle();
-animateBattle();
+
+animate();
+// initBattle();
+// animateBattle();
 
 document.querySelector("#battleContent").addEventListener("click", (e) => {
 	if (queue.length > 0) {
