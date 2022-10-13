@@ -14,7 +14,7 @@ const audio = {
 		html5: true,
 		volume: 0.05,
 	}),
-	tackle: new Howl({
+	tackleHit: new Howl({
 		src: "./data/audio/tackleHit.wav",
 		html5: true,
 		volume: 0.01,

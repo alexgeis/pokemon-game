@@ -26,6 +26,7 @@ const endBattle = () => {
 			});
 
 			battle.initiated = false;
+			audio.map.play();
 		},
 	});
 };
