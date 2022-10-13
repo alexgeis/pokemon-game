@@ -1,6 +1,8 @@
+import mapUrl from "./data/audio/map.wav";
+
 const audio = {
 	map: new Howl({
-		src: "./data/audio/map.wav",
+		src: mapUrl,
 		html5: true,
 		volume: 0.1,
 	}),

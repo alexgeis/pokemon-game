@@ -2,9 +2,10 @@ import { Sprite, Monster } from "./classes";
 import { audio } from "./data/audio/audio";
 import { attacks } from "./data/attacks";
 import { monstersData } from "./data/monsters";
+import battleBackgroundImgURL from "./img/game_assets/battleBackground.png";
 
 const battleBackgroundImg = new Image();
-battleBackgroundImg.src = "./img/game_assets/battleBackground.png";
+battleBackgroundImg.src = battleBackgroundImgURL;
 const battleBackground = new Sprite({
 	position: {
 		x: 0,
