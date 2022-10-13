@@ -175,9 +175,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Roadmap
 
-- [ ] Battle Animations
-- [ ] Level System for Player
 - [ ] Introduce More Monsters
+- [ ] Introduce More Attacks
+- [ ] Level System for Player/Monsters
 - [ ] Building Interiors
 
 See the [open issues](https://github.com/alexgeis/pokemon-game/issues) for a full list of proposed features (and known issues).
